@@ -1,0 +1,6 @@
+@extends('layouts.app')
+@section('title','Packages')
+@section('content')
+<div class="page-head"><div><div class="eyebrow">BUILD YOUR ADVENTURES</div><h1>Packages</h1><p class="muted">Add and manage packages with prices, points and validity. Changes apply to future bills.</p></div><a class="btn" href="{{ route('packages.create') }}">@include('icon',['name'=>'plus']) Add package</a></div><div class="catalog-grid">
+@forelse($packages as $p)<article class="package-card" style="--card-color:{{ $p->color }}"><div class="row between"><span class="package-icon">@include('icon',['name'=>$p->icon])</span><span class="badge {{ $p->active?'':'gray' }}">{{ $p->active?'Active':'Hidden' }}</span></div><span class="kind">{{ $p->kind }}</span><h3>{{ $p->name }}</h3><p>{{ $p->description }}</p><div class="package-meta">{{ $p->points }} points · {{ $p->validity_hours }} hours</div><div class="package-bottom"><strong class="package-price">₹{{ \App\Domain\Money::display($p->price_paise) }}</strong><a class="btn secondary small" href="{{ route('packages.edit',$p) }}">Edit</a></div></article>@empty<div class="panel empty"><h3>Create your first package.</h3><p>Add an entry ticket or a points package.</p></div>@endforelse</div>
+@endsection

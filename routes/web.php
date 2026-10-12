@@ -1,0 +1,60 @@
+<?php
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\{AuthController,DashboardController,PackageController,RideController,MachineController,SaleController,PassController,SettingsController,UserController,TransactionController};
+Route::get('/login',[AuthController::class,'form'])->name('login');
+Route::post('/login',[AuthController::class,'login'])->middleware('throttle:login');
+Route::middleware(['auth','active'])->group(function(){
+ Route::post('/logout',[AuthController::class,'logout'])->name('logout');
+ Route::get('/mobile',[\App\Http\Controllers\MobilePortalController::class,'home'])->name('mobile.home');
+ Route::get('/',function(\Illuminate\Http\Request $r){return $r->user()->role==='staff'?redirect()->route('staff.home'):app(DashboardController::class)();})->name('dashboard');
+ Route::prefix('staff')->name('staff.')->group(function(){
+  Route::get('/',[\App\Http\Controllers\StaffPortalController::class,'home'])->name('home');
+  Route::post('/punch',[\App\Http\Controllers\StaffPortalController::class,'punch'])->middleware('throttle:attendance')->name('punch');
+  Route::get('/history',[\App\Http\Controllers\StaffPortalController::class,'history'])->name('history');
+  Route::get('/history/{attendance}',[\App\Http\Controllers\StaffPortalController::class,'show'])->name('detail');
+  Route::get('/requests',[\App\Http\Controllers\StaffPortalController::class,'requests'])->name('requests');
+  Route::post('/requests',[\App\Http\Controllers\StaffPortalController::class,'requestCorrection'])->middleware('throttle:attendance')->name('requests.store');
+  Route::get('/profile',[\App\Http\Controllers\StaffPortalController::class,'profile'])->name('profile');
+  Route::put('/password',[\App\Http\Controllers\StaffPortalController::class,'password'])->middleware('throttle:attendance')->name('password');
+ });
+ Route::middleware('billing')->group(function(){
+ Route::get('/pos',[SaleController::class,'create'])->name('pos');
+ Route::post('/sales',[SaleController::class,'store'])->name('sales.store');
+ Route::get('/sales',[SaleController::class,'index'])->name('sales.index');
+ Route::get('/sales/{sale}',[SaleController::class,'show'])->name('sales.show');
+ Route::get('/passes',[PassController::class,'index'])->name('passes.index');
+ Route::get('/passes/{pass}',[PassController::class,'show'])->name('passes.show');
+ });
+ Route::middleware('admin')->group(function(){
+  Route::resource('sites',\App\Http\Controllers\WorkSiteController::class)->except(['show','destroy']);
+  Route::get('/crm',[\App\Http\Controllers\AttendanceAdminController::class,'index'])->name('crm.attendance');
+  Route::get('/attendance',[\App\Http\Controllers\AttendanceAdminController::class,'index'])->name('attendance.index');
+  Route::get('/crm/export',[\App\Http\Controllers\AttendanceAdminController::class,'export'])->name('crm.export');
+  Route::get('/crm/requests',[\App\Http\Controllers\AttendanceAdminController::class,'requests'])->name('crm.requests');
+  Route::get('/crm/requests/{correction}',[\App\Http\Controllers\AttendanceAdminController::class,'reviewForm'])->name('crm.review');
+  Route::post('/crm/requests/{correction}',[\App\Http\Controllers\AttendanceAdminController::class,'review'])->name('crm.review.store');
+  Route::get('/crm/attendance/{attendance}',[\App\Http\Controllers\AttendanceAdminController::class,'show'])->name('crm.detail');
+  Route::post('/crm/attendance/{attendance}/review',[\App\Http\Controllers\AttendanceAdminController::class,'createReview'])->name('crm.create-review');
+  Route::get('/counters',[\App\Http\Controllers\CounterController::class,'index'])->name('counters.index');
+  Route::get('/counters/create',[\App\Http\Controllers\CounterController::class,'create'])->name('counters.create');
+  Route::post('/counters',[\App\Http\Controllers\CounterController::class,'store'])->name('counters.store');
+  Route::resource('packages',PackageController::class)->except('show');
+  Route::get('/rides/setup-25',[\App\Http\Controllers\RideSetupController::class,'form'])->name('rides.setup');
+  Route::post('/rides/setup-25',[\App\Http\Controllers\RideSetupController::class,'save'])->name('rides.setup.save');
+  Route::resource('rides',RideController::class)->except('show');
+  Route::resource('machines',MachineController::class)->except(['show','destroy']);
+  Route::post('/machines/{machine}/rotate',[MachineController::class,'rotate'])->name('machines.rotate');
+  Route::post('/machines/{machine}/camera-config',[MachineController::class,'cameraConfig'])->name('machines.camera-config');
+  Route::post('/sales/{sale}/void',[SaleController::class,'void'])->name('sales.void');
+  Route::patch('/passes/{pass}',[PassController::class,'update'])->name('passes.update');
+  Route::post('/passes/{pass}/adjust',[PassController::class,'adjust'])->name('passes.adjust');
+  Route::get('/settings',[SettingsController::class,'edit'])->name('settings.edit');
+  Route::put('/settings',[SettingsController::class,'update'])->name('settings.update');
+  Route::resource('users',UserController::class)->except(['show','destroy']);
+  Route::get('/staff-management',[UserController::class,'index'])->name('staff.management');
+  Route::post('/users/{user}/toggle-status',[UserController::class,'toggleStatus'])->name('users.toggle-status');
+  Route::get('/transactions',[TransactionController::class,'index'])->name('transactions.index');
+  Route::post('/transactions/{transaction}/resolve',[TransactionController::class,'resolve'])->name('transactions.resolve');
+  Route::get('/audit',[TransactionController::class,'audit'])->name('audit');
+ });
+});

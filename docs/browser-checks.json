@@ -1,0 +1,23 @@
+{
+  "checks_passed": [
+    "empty cart cannot submit",
+    "multi-item total",
+    "multi-item points",
+    "quantity counter",
+    "server form fields generated",
+    "discount total",
+    "cash change",
+    "insufficient cash blocks checkout",
+    "payment method fields",
+    "cash amount ignored for UPI",
+    "category filter",
+    "search filter",
+    "no JavaScript runtime errors",
+    "mobile has no horizontal overflow",
+    "mobile navigation",
+    "clear cart disables checkout"
+  ],
+  "count": 16,
+  "runtime": "Chromium, static interface preview using actual app.js and CSS",
+  "not_tested": "Laravel HTTP server, database, QR generation and hardware"
+}

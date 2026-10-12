@@ -1,0 +1,23 @@
+{
+  "passed": 17,
+  "checks": [
+    "Page load requests neither GPS nor attendance",
+    "Check obtains a fix without posting attendance",
+    "Punch In posts once despite the original duplicate button attributes",
+    "No open shift keeps Punch Out disabled",
+    "Active shift keeps Punch In disabled and Punch Out enabled",
+    "Punch Out carries the open session and a fresh location",
+    "Poor-accuracy Punch In never posts",
+    "Native location failure 1 never posts",
+    "Native location failure 2 never posts",
+    "Native location failure 3 never posts",
+    "ERP geofence rejection is shown and allows a fresh attempt",
+    "Lost response keeps an immutable payload and retries the same UUID",
+    "Expired login gives sign-in and History guidance",
+    "Private LAN remains usable when navigator reports offline",
+    "Static preview never punches even after a tap",
+    "Another ERP origin cannot receive a punch",
+    "Admin site centre uses fresh native GPS and waits for explicit Save"
+  ],
+  "scope": "Production APK JavaScript in Chromium, HTTP fixture ERP, simulated native GPS callbacks. No physical phone GPS or production ERP."
+}

@@ -1,0 +1,58 @@
+{
+  "mysql_version": "8.0.46-0ubuntu0.24.04.3",
+  "import_checks_passed": 9,
+  "import_checks": [
+    "Native MySQL 8 server uses the marked disposable datadir",
+    "Import preview reads supplied SQLite data without writing MySQL or SQLite",
+    "Copy requires maintenance mode before changing the destination",
+    "All 15 supplied tables retain IDs, hashes, balances, bills, history and values on MySQL",
+    "Repeat import refuses to overwrite or duplicate existing ERP records",
+    "Missing source is rejected without creating a replacement SQLite file",
+    "MySQL foreign-key failure rolls back every copied table and restores the migration placeholder",
+    "A configured destination work site is retained and import stops",
+    "Synthetic administrator password hash imports unchanged and camera fixture is ready"
+  ],
+  "supplied_counts": {
+    "work_sites": 1,
+    "users": 2,
+    "settings": 1,
+    "packages": 6,
+    "rides": 6,
+    "machines": 1,
+    "park_passes": 1,
+    "sales": 1,
+    "sale_items": 1,
+    "redemptions": 0,
+    "point_entries": 2,
+    "audit_logs": 7,
+    "attendance_sessions": 0,
+    "attendance_punches": 0,
+    "attendance_corrections": 0
+  },
+  "http_scenarios_passed": 13,
+  "http": {
+    "passed": 13,
+    "checks": [
+      "Database administrator opens the 25-ride configuration screen",
+      "Administrator supplies 25 real test rates through the actual form",
+      "Save downloads a valid private ZIP with 25 distinct reader configurations",
+      "All 25 configurations authenticate against their assigned database ride",
+      "Admin can explicitly enable each reader after provisioning",
+      "Actual POS issues a bill with one shared 10,000-point QR wallet",
+      "The bundled camera detector/decoder reads the actual ERP bill QR at QVGA",
+      "Each of 25 readers deducts its own ride points exactly once from the same QR",
+      "Admin QR wallet and transaction list read those 25 database charges",
+      "Two simultaneous readers cannot spend the same final ten points twice",
+      "Admin creates a staff login in the same database",
+      "Staff database login and idempotent punch-in/out persist on the server",
+      "Administrator reads the same persisted staff attendance records"
+    ],
+    "rides": 25,
+    "original_wallet_balance": 10000,
+    "after_all_25_rides": 6750,
+    "total_deducted": 3250,
+    "database_driver": "mysql",
+    "scope": "Disposable mysql ERP; real HTTP login/forms/POS/QR/reader auth/ledger; multiworker concurrency. Native decoder reads rendered receipt pixels. ACKs simulated; no real camera or GPIO pulse."
+  },
+  "scope": "Private MySQL 8 datadir; supplied SQLite data read-only; separate synthetic HTTP fixture. GPS input and reader ACKs simulated; no live deployment."
+}

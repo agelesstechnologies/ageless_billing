@@ -1,0 +1,11 @@
+/vendor/
+/.env
+/.phpunit.cache/
+/database/*.sqlite*
+/storage/**/*.log
+/public/storage
+/bootstrap/cache/*.php
+/storage/framework/views/*
+/storage/framework/sessions/*
+/storage/framework/cache/data/*
+/storage/backups/

@@ -1,0 +1,36 @@
+{
+  "passed": 14,
+  "checks": [
+    "Admin authenticates a legacy mixed-case database email and returns to app Home",
+    "Admin Home fits a 390px phone viewport",
+    "Admin can open employee creation in the app workspace",
+    "Employee creation form fits a 390px phone viewport",
+    "Real admin form saves a new staff account in the project database",
+    "Newly created staff authenticates through the same database and enters attendance",
+    "Staff is denied admin user creation by the server",
+    "Punch In uses real session/CSRF and commits a database attendance record",
+    "A new HTTP request reloads the persisted open shift",
+    "Punch Out closes the same database shift with a second raw event",
+    "Staff History reads the saved database attendance",
+    "Admin register reads the same staff and attendance database",
+    "Admin work-site form obtains native centre GPS without saving automatically",
+    "Password changed in database rejects the existing admin HTTP session"
+  ],
+  "database": {
+    "users": 2,
+    "staff": {
+      "role": "staff",
+      "active": true,
+      "site": "Database App Test Site",
+      "password_hashed": true
+    },
+    "punches": 2,
+    "sessions": 1,
+    "open": 0,
+    "types": [
+      "in",
+      "out"
+    ]
+  },
+  "scope": "Updated ERP, real HTTP authentication/CSRF/forms, synthetic administrator creates staff; persisted users and attendance in disposable SQLite. Native GPS callbacks simulated in Chromium. No live server or physical phone."
+}

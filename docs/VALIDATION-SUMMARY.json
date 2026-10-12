@@ -1,0 +1,49 @@
+{
+  "release": "v2.0-source",
+  "tested_on": "2026-10-06",
+  "php_linted_files": 75,
+  "blade_framework_compilation": "NOT RUN",
+  "passed_commands": [
+    {
+      "command": "php tests/domain_smoke.php",
+      "exit_code": 0,
+      "stdout": "PASS: 6045 domain assertions (money parsing, integer tax, discounts, denial policies, approval time window).\nThese checks do not execute Laravel, SQL transactions, QR generation or ESP hardware."
+    },
+    {
+      "command": "php tests/attendance_domain_smoke.php",
+      "exit_code": 0,
+      "stdout": "PASS: 1542 attendance domain / CSV assertions. No Laravel or database was executed."
+    },
+    {
+      "command": "node --check public/assets/app.js",
+      "exit_code": 0,
+      "stdout": ""
+    },
+    {
+      "command": "node --check public/assets/attendance.js",
+      "exit_code": 0,
+      "stdout": ""
+    },
+    {
+      "command": "python tests/browser_preview.py",
+      "exit_code": 0,
+      "stdout": "PASS: 16 browser/UI checks"
+    },
+    {
+      "command": "python tests/browser_attendance.py",
+      "exit_code": 0,
+      "stdout": "PASS: 39 browser/UI assertions (mocked GPS/HTTP; no Laravel)."
+    }
+  ],
+  "provided_not_run_laravel_test_methods": {
+    "AttendanceFlowTest.php": 42,
+    "ParkFlowTest.php": 27
+  },
+  "runtime_limitations": [
+    "No Composer executable or vendor framework in authoring environment",
+    "No PDO database driver, mbstring/XML/DOM extension set needed for full framework",
+    "Dependency download unavailable in authoring container",
+    "Browser tests use static markup/shared assets and mocked geolocation/HTTP, not Laravel",
+    "Real HTTPS phone permission, GPS, host/database concurrency, printer and ESP hardware NOT TESTED"
+  ]
+}

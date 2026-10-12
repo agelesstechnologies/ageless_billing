@@ -1,0 +1,20 @@
+{
+  "passed": 10,
+  "checks": [
+    "Database administrator opens the 25-ride configuration screen",
+    "Administrator supplies 25 real test rates through the actual form",
+    "Save downloads a valid private ZIP with 25 distinct reader configurations",
+    "All 25 configurations authenticate against their assigned database ride",
+    "Admin can explicitly enable each reader after provisioning",
+    "Actual POS issues a bill with one shared 10,000-point QR wallet",
+    "The bundled camera detector/decoder reads the actual ERP bill QR at QVGA",
+    "Each of 25 readers deducts its own ride points exactly once from the same QR",
+    "Admin QR wallet and transaction list read those 25 database charges",
+    "Two simultaneous readers cannot spend the same final ten points twice"
+  ],
+  "rides": 25,
+  "original_wallet_balance": 10000,
+  "after_all_25_rides": 6750,
+  "total_deducted": 3250,
+  "scope": "Disposable SQLite ERP; real HTTP login/forms/POS/QR/reader auth/ledger; multiworker concurrency. Native decoder reads rendered receipt pixels. ACKs simulated; no real camera or GPIO pulse."
+}

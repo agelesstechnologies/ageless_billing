@@ -1,0 +1,54 @@
+{
+  "baseline": "Ageless_Park_Billing_Laravel_ESP32.zip (uploaded original)",
+  "meaning": "Byte comparison only; not a runtime, migration, QR compatibility or hardware test. Other routing/security/layout files changed intentionally.",
+  "files": [
+    {
+      "path": "database/migrations/2026_10_06_000001_create_park_tables.php",
+      "unchanged": true,
+      "baseline_sha256": "346c68d3d06836193ad55f8e23ab20d92718b7b26b9d1d64783865575dbcfcac",
+      "v2_sha256": "346c68d3d06836193ad55f8e23ab20d92718b7b26b9d1d64783865575dbcfcac"
+    },
+    {
+      "path": "routes/api.php",
+      "unchanged": true,
+      "baseline_sha256": "20806b1ec5158b54751fc5ebc2af61d531b27d4233a3f926d90f976624598d0e",
+      "v2_sha256": "20806b1ec5158b54751fc5ebc2af61d531b27d4233a3f926d90f976624598d0e"
+    },
+    {
+      "path": "app/Services/SaleService.php",
+      "unchanged": true,
+      "baseline_sha256": "e37fbe4703262957cb4005da50c4dfb31aa10036c8974a131bb5a38f7b5f0811",
+      "v2_sha256": "e37fbe4703262957cb4005da50c4dfb31aa10036c8974a131bb5a38f7b5f0811"
+    },
+    {
+      "path": "app/Services/RedemptionService.php",
+      "unchanged": true,
+      "baseline_sha256": "3fc083fbefbede112dfc496092ba05888af8d52ff69a89384ee9b743613041d1",
+      "v2_sha256": "3fc083fbefbede112dfc496092ba05888af8d52ff69a89384ee9b743613041d1"
+    },
+    {
+      "path": "app/Domain/Money.php",
+      "unchanged": true,
+      "baseline_sha256": "d60dc3131b65488236286cbbdb5627af829cd5b613961f126fdc314262b5ce80",
+      "v2_sha256": "d60dc3131b65488236286cbbdb5627af829cd5b613961f126fdc314262b5ce80"
+    },
+    {
+      "path": "public/assets/app.js",
+      "unchanged": true,
+      "baseline_sha256": "4f834612492f9572ca3aa2008fb52f055213f04538f673cd566a027cd5cf5c7a",
+      "v2_sha256": "4f834612492f9572ca3aa2008fb52f055213f04538f673cd566a027cd5cf5c7a"
+    },
+    {
+      "path": "firmware/AgelessParkReader/Config.h",
+      "unchanged": true,
+      "baseline_sha256": "590149183a0673a8cb1829c46d2edb2507470d3a24f67cd2137c49452f5300ab",
+      "v2_sha256": "590149183a0673a8cb1829c46d2edb2507470d3a24f67cd2137c49452f5300ab"
+    },
+    {
+      "path": "firmware/AgelessParkReader/AgelessParkReader.ino",
+      "unchanged": true,
+      "baseline_sha256": "6a28374a03a878a3f277c6955431eaf4e26afd82ad95dbe61968d188baab118d",
+      "v2_sha256": "6a28374a03a878a3f277c6955431eaf4e26afd82ad95dbe61968d188baab118d"
+    }
+  ]
+}
