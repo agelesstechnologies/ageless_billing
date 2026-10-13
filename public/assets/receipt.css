@@ -1,0 +1,33 @@
+/* Thermal bill layout, shared by screen and print. */
+.receipt-layout{grid-template-columns:minmax(280px,340px) minmax(0,1fr)}
+.receipt{max-width:340px;padding:30px 36px 12px;color:#303030;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.5;border:1px solid #ddd;border-radius:0;box-shadow:none;font-variant-numeric:tabular-nums}
+.receipt .receipt-head{border:0;margin:0 0 24px;padding:0}
+.receipt .receipt-head h2{color:#111;font-size:21px;font-weight:700;letter-spacing:1px;margin:0 0 10px}
+.receipt .receipt-head p{font-size:11px;margin-top:4px}
+.receipt-head p:empty{display:none}
+.receipt .receipt-meta{font-size:12px;margin:0 0 20px}
+.receipt-status{font-size:14px;margin:0 0 5px;font-weight:700}
+.receipt .receipt-meta>div{margin:7px 0;gap:10px}
+.receipt-meta>div>span:last-child{text-align:right;overflow-wrap:anywhere}
+.receipt-items{border-top:2px dotted #888;border-bottom:2px dotted #888;padding:7px 0 14px}
+.receipt-items h3{font-size:11px;margin:0 0 2px}
+.receipt-item+ .receipt-item{margin-top:12px}
+.receipt-item>strong{font-size:14px;font-weight:700}
+.receipt-line{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:7px 0}
+.receipt-line>span:last-child{text-align:right;overflow-wrap:anywhere}
+.receipt-item .receipt-line{margin:2px 0 8px}
+.receipt-item p{font-size:11px}
+.receipt-totals{padding-top:0}
+.receipt-grand{border-top:2px dotted #888;margin-top:18px;padding-top:0}
+.receipt-grand>strong:first-child{font-size:14px}
+.receipt-grand>strong:last-child{font-size:22px;letter-spacing:.5px;color:#111;text-align:right;line-height:1.25}
+.receipt-payment{margin-top:30px}
+.receipt-redemption{break-inside:avoid}
+.receipt .receipt-qr{width:140px;margin:30px auto 14px}
+.receipt .receipt-note{color:#303030;font-size:10px;text-align:center}
+.receipt-note strong{display:block;font-size:12px;font-weight:700;margin-bottom:6px}
+.receipt-note span{display:block}
+.receipt .receipt-footer{border-top:2px dotted #888;padding-top:8px;margin-top:20px;font-size:9px;color:#303030;white-space:pre-line}
+.receipt-footer p+p{margin-top:5px}
+@media(max-width:700px){.receipt-layout{grid-template-columns:1fr}.receipt{padding:30px 26px 12px}}
+@media print{.receipt{border:0;max-width:none;padding:4mm 5mm 0;color:#000;font-size:9pt}.receipt .receipt-head h2{font-size:15pt}.receipt .receipt-meta{font-size:9pt}.receipt .receipt-qr{width:36mm}.receipt-grand>strong:last-child{font-size:16pt}.receipt-width-58 .receipt{padding:2mm 1mm;font-size:8pt}.receipt-width-58 .receipt-meta{font-size:8pt}.receipt-width-58 .receipt-grand>strong:last-child{font-size:13pt}.receipt-width-58 .receipt-qr{width:30mm}.receipt-width-A4 .receipt{max-width:80mm;padding:8mm 5mm;margin:0 auto}}

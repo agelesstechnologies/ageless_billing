@@ -1,0 +1,93 @@
+/* Shared screen adaptations for park, CRM, billing and staff pages. */
+@media screen {
+.app-main,.content,.panel,.pos-left,.checkout,.field,.two-col>*,.site-grid>*,.receipt-layout>*,.stat{min-width:0}
+img,video,canvas{max-width:100%}
+.field input,.field select,.field textarea{max-width:100%;min-width:0}
+.table-wrap{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+.panel-head,.form-actions,.request-tabs,.hero-links{flex-wrap:wrap}
+.page-head>div,.breadcrumb,.machine-row>div{min-width:0}
+.page-head h1,.stat-value,.notice,.alert,.machine-row strong{overflow-wrap:anywhere}
+}
+@media screen and (max-width:1100px){
+.premium .sidebar,.sidebar{width:252px;max-width:85vw;transform:translateX(-100%);transition:transform .2s;overflow-y:auto;height:100dvh;z-index:30}
+.sidebar.open{transform:translateX(0)}
+.premium .app-main,.app-main{margin-left:0}
+.mobile-toggle{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;flex-shrink:0}
+.sidebar nav{flex:1;min-height:0}
+.topbar{padding:0 20px}
+.topbar-right .date{display:none}
+.stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.two-col{grid-template-columns:minmax(0,1fr)}
+.attendance-filters{grid-template-columns:repeat(3,minmax(0,1fr))}
+.receipt-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.pos-page .catalog-grid{grid-template-columns:repeat(auto-fill,minmax(145px,1fr))}
+.pos-page .recent{max-width:100%;overflow-x:auto}
+.filters .field{flex:1 1 170px;min-width:0}
+}
+@media screen and (max-width:700px){
+.premium .content,.content{padding:20px 16px 32px}
+.premium .topbar,.topbar{height:auto;min-height:64px;padding:8px 12px;gap:8px}
+.breadcrumb{gap:6px;flex:1;overflow:hidden}
+.breadcrumb>span,.breadcrumb>strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.breadcrumb>span:first-of-type{display:none}
+.breadcrumb>span:nth-of-type(2){display:none}
+.topbar-right{flex-shrink:0}
+.topbar-right .badge{font-size:9px;padding:5px 7px}
+.premium .page-head,.page-head{flex-direction:column;align-items:stretch;gap:14px}
+.premium .page-head .btn,.page-head>.btn{min-height:44px;font-size:12px;align-self:flex-start}
+.premium h1{font-size:25px}
+.panel,.premium .panel{padding:18px 16px}
+.panel-head{gap:10px;align-items:flex-start}
+.field-grid,.site-grid,.evidence-grid,.receipt-layout{grid-template-columns:minmax(0,1fr)}
+.attendance-filters{grid-template-columns:repeat(2,minmax(0,1fr))}
+.attendance-filters .btn{min-height:44px}
+.filters{gap:10px}
+.filters .field{flex:1 1 140px;min-width:0}
+.filters>.btn{flex:1 1 130px}
+input:not([type=checkbox]):not([type=radio]),select,textarea,.premium input,.premium select,.premium textarea{font-size:16px}
+.btn,.premium .btn{min-height:44px}
+.form-actions{justify-content:stretch}
+.form-actions>.btn{flex:1 1 140px}
+.review-strip{align-items:flex-start;flex-direction:column}
+.request-tabs{gap:6px}
+.machine-row{flex-wrap:wrap}
+.machine-row .badge{margin-left:0}
+.hero,.crm-hero{padding:22px 18px}
+.crm-hero>div{max-width:100%}
+.crm-hero .hero-art,.hero-orbit{display:none}
+.hero-links{gap:14px}
+.premium .stat,.stat{padding:16px 12px}
+.premium .stat-value,.stat-value{font-size:25px;letter-spacing:-.5px}
+.stat-top{gap:6px;flex-wrap:wrap}
+.pos-page .catalog-toolbar .search{flex-basis:100%;min-width:0}
+.pos-page .catalog-toolbar .search input{min-width:0;width:0}
+.pos-page .catalog-toolbar .search kbd{display:none}
+.pos-page .tabs{width:100%;gap:6px}
+.pos-page .tab{flex:1;padding:0 10px}
+.pos-page .catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.pos-page .package-info{padding:10px}
+.pos-page .package-info strong{overflow-wrap:anywhere;font-size:13px}
+.pos-page .checkout{padding:16px 12px;overflow:visible}
+.pos-page .payment-option{border:0;padding:0;min-width:0}
+.pos-page .payment-option span{font-size:13px;min-height:70px}
+.pos-page .generate-btn{height:auto;min-height:54px;font-size:17px;padding:12px}
+.pos-page .stepper button{width:36px;height:36px}
+.pos-page .row-del{min-width:44px;min-height:44px}
+.pos-page .totals .grand span:last-child{font-size:25px}
+.pos-page .selected-ticket-heading strong{font-size:14px}
+.pos-page .ticket-facts{gap:6px}
+.login-form-wrap{padding:28px 20px}
+.premium-login .login-story{padding:28px 20px}
+.staff-brand{min-width:0}
+.staff-brand>span:last-child{overflow:hidden}
+.staff-brand strong{display:block;overflow:hidden;text-overflow:ellipsis}
+.staff-header{gap:12px}
+.staff-avatar{flex-shrink:0}
+.pagination{gap:12px;flex-wrap:wrap}
+}
+@media screen and (max-width:374px){
+.attendance-filters{grid-template-columns:minmax(0,1fr)}
+.stat-grid{gap:8px}
+.premium .stat-value,.stat-value{font-size:21px}
+.pos-page .selected-ticket-bottom{flex-wrap:wrap}
+}

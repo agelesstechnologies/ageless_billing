@@ -1,6 +1,6 @@
 @php($mobileApp = str_contains(request()->userAgent() ?? '', 'AgelessStaffAndroid/'))
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="csrf-token" content="{{ csrf_token() }}"><meta name="ageless-user-role" content="{{ auth()->user()->role }}"><meta name="theme-color" content="{{ $park['secondary'] }}"><title>@yield('title','Dashboard') · {{ $park['park_name'] }}</title><link rel="stylesheet" href="{{ asset('assets/app.css') }}"><link rel="stylesheet" href="{{ asset('assets/premium.css') }}"><style>:root{--accent:{{ $park['accent'] }};--secondary:{{ $park['secondary'] }};--yellow:#fed939;--yellow-ink:#180444;}</style>@stack('head')</head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="csrf-token" content="{{ csrf_token() }}"><meta name="ageless-user-role" content="{{ auth()->user()->role }}"><meta name="theme-color" content="{{ $park['secondary'] }}"><title>@yield('title','Dashboard') · {{ $park['park_name'] }}</title><link rel="stylesheet" href="{{ asset('assets/app.css') }}"><link rel="stylesheet" href="{{ asset('assets/premium.css') }}"><style>:root{--accent:{{ $park['accent'] }};--secondary:{{ $park['secondary'] }};--yellow:#fed939;--yellow-ink:#180444;}</style>@stack('head')<link rel="stylesheet" href="{{ asset('assets/responsive.css') }}"></head>
 <body class="premium @yield('body-class')">
 <aside class="sidebar" id="sidebar"><a href="{{ route($mobileApp ? 'mobile.home' : 'dashboard') }}" class="brand"><span class="brand-mark">@include('icon',['name'=>'wheel'])</span><span style="min-width:0;white-space:nowrap;"><strong style="white-space:nowrap;font-size:18px;letter-spacing:-0.4px;">Grand Lemurian<span class="brand-dot">.</span></strong><small style="white-space:nowrap;">BY AGELESS</small></span></a><nav>
 <div class="nav-group">YOUR WORKSPACE</div>
@@ -11,7 +11,7 @@
 @endif
 @if(!$mobileApp)
 <div class="nav-group">TICKETS & EXPERIENCES</div>
-<a class="nav-link {{ request()->routeIs('pos')?'active':'' }}" href="{{ route('pos') }}">@include('icon',['name'=>'pos']) Ticket counter</a>
+<a class="nav-link {{ request()->routeIs('pos')?'active':'' }}" href="{{ route('pos') }}">@include('icon',['name'=>'pos']) Billing</a>
 <a class="nav-link {{ request()->routeIs('sales.*')?'active':'' }}" href="{{ route('sales.index') }}">@include('icon',['name'=>'receipt']) Bills & sales</a>
 <a class="nav-link {{ request()->routeIs('passes.*')?'active':'' }}" href="{{ route('passes.index') }}">@include('icon',['name'=>'qr']) QR passes</a>
 @endif

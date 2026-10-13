@@ -5,7 +5,7 @@ use App\Services\{SaleService,Qr};
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 class SaleController {
- public function create(){return view('sales.create',['packages'=>Package::where('active',true)->get(),'requestId'=>(string)Str::uuid()]);}
+ public function create(){return view('sales.create',['packages'=>Package::where('active',true)->get(),'recent'=>Sale::with('items')->latest()->limit(5)->get(),'requestId'=>(string)Str::uuid()]);}
  public function store(Request $r,SaleService $service){
   $d=$r->validate(['request_id'=>'required|uuid','customer_name'=>'nullable|string|max:100','phone'=>'nullable|string|max:24','existing_credential'=>['nullable','regex:/^QR-[A-F0-9]{32}$/'],'items'=>'required|array|min:1|max:30','items.*.package_id'=>'required|integer|distinct','items.*.quantity'=>'required|integer|min:1|max:99','discount'=>['nullable','regex:/^(0|[1-9]\d{0,7})(\.\d{1,2})?$/'],'received'=>['nullable','regex:/^(0|[1-9]\d{0,7})(\.\d{1,2})?$/'],'payment_method'=>'required|in:cash,upi,card','payment_reference'=>'nullable|string|max:80']);
   $sale=$service->create($d,$r->user());return redirect()->route('sales.show',$sale)->with('success','Bill saved. QR pass is ready to print.');
