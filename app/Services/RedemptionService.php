@@ -63,7 +63,7 @@ class RedemptionService {
     PointEntry::create(['park_pass_id'=>$pass->id,'delta'=>$tx->points,'balance_after'=>$pass->balance,'kind'=>'ride_refund','redemption_id'=>$tx->id,'user_id'=>$user->id,'note'=>$note]);
    }
    $tx->update(['status'=>$action==='refund'?'reversed':'completed','code'=>$action==='refund'?'REVERSED':'COMPLETED','resolution_note'=>$note,'resolved_by'=>$user->id,'acknowledged_at'=>now()]);
-   Audit::record('redemption.'.$action,'redemption',$tx->id,['note'=>$note]);
+
   },3);
  }
 }

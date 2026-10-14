@@ -47,7 +47,7 @@ class SaleService {
     $sale->items()->createMany($lines);
     $pass->update(['balance'=>$pass->balance+$points,'expires_at'=>$expiry]);
     PointEntry::create(['park_pass_id'=>$pass->id,'delta'=>$points,'balance_after'=>$pass->balance,'kind'=>$kind,'sale_id'=>$sale->id,'user_id'=>$user->id,'note'=>$sale->number]);
-    Audit::record('sale.created','sale',$sale->id,['number'=>$sale->number,'total_paise'=>$sale->total_paise]);
+
     return $sale;
    },3);
   }catch(QueryException $e){
@@ -66,7 +66,7 @@ class SaleService {
    $pass->update(['balance'=>0,'status'=>'blocked']);
    $bill->update(['status'=>'voided','void_reason'=>$reason,'voided_by'=>$user->id,'voided_at'=>now()]);
    PointEntry::create(['park_pass_id'=>$pass->id,'delta'=>-$bill->points_added,'balance_after'=>0,'kind'=>'void','sale_id'=>$bill->id,'user_id'=>$user->id,'note'=>$reason]);
-   Audit::record('sale.voided','sale',$bill->id,['reason'=>$reason]);
+
   },3);
  }
 }

@@ -6,7 +6,7 @@ Complete this in an isolated staging installation, then conduct controlled site 
 
 Run the supplied Laravel suite with dev dependencies and an in-memory test database. Compile/render every Blade screen through Laravel; static HTML previews are not Blade tests. Run dependency audit in the target installation, retain reviewed `composer.lock`, configure trusted HTTPS, secure cookies, web root `public/`, trusted proxies and server time. Confirm `.env`, SQLite file, storage/logs, backups, previews and test files are not public.
 
-Exercise admin, cashier and staff role logins. Staff must always land in the mobile portal; direct `/pos`, sales/pass URLs, `/crm`, `/users`, `/sites`, tokens, audit and other employee detail URLs must be rejected. Cashier keeps existing billing but not all-staff attendance. Test disabled accounts, forgotten-password administration, changed passwords/session revocation, expired login/CSRF and logout. Do not ship shared accounts or sample passwords.
+Exercise admin, cashier and staff role logins. Staff must always land in the mobile portal; direct `/pos`, sales/pass URLs, `/crm`, `/users`, `/sites`, tokens and other employee detail URLs must be rejected. Cashier keeps existing billing but not all-staff attendance. Test disabled accounts, forgotten-password administration, changed passwords/session revocation, expired login/CSRF and logout. Do not ship shared accounts or sample passwords.
 
 ## Real phones and site boundaries
 

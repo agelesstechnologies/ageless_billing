@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Domain\AttendancePolicy;
 use App\Models\{AttendanceSession, AttendanceCorrection, WorkSite, User};
-use App\Services\{AttendanceCorrectionService, Audit};
+use App\Services\{AttendanceCorrectionService};
 use App\Support\Csv;
 use Carbon\CarbonImmutable;
 use Illuminate\Http\Request;
@@ -51,7 +51,7 @@ class AttendanceAdminController {
     public function export(Request $r) {
         $filters = $this->filters($r);
         $query = $this->query($filters)->with(['user', 'punches'])->orderBy('started_at');
-        Audit::record('attendance.exported', 'attendance_session', null, $filters);
+
 
         return response()->streamDownload(function () use ($query) {
             $out = fopen('php://output', 'w');
@@ -160,7 +160,7 @@ class AttendanceAdminController {
                 'work_date' => $attendance->work_date,
                 'reason' => 'Administrator review: ' . $data['reason'],
             ]);
-            Audit::record('attendance.admin_review_requested', 'attendance_correction', $record->id);
+
             return $record;
         });
         return redirect()->route('crm.review', $record);

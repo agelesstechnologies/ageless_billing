@@ -28,7 +28,6 @@
 <a class="nav-link {{ request()->routeIs('sites.*')?'active':'' }}" href="{{ route('sites.index') }}">@include('icon',['name'=>'pin']) Work site settings</a>
 @if(!$mobileApp)
 <a class="nav-link {{ request()->routeIs('settings.*')?'active':'' }}" href="{{ route('settings.edit') }}">@include('icon',['name'=>'settings']) Park settings</a>
-<a class="nav-link {{ request()->routeIs('audit')?'active':'' }}" href="{{ route('audit') }}">@include('icon',['name'=>'shield']) Audit trail</a>
 @endif
 @endif
 <div class="nav-group">ACCOUNT</div>

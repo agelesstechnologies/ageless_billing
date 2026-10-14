@@ -2,7 +2,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\{User, WorkSite};
-use App\Services\Audit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Rules\StrongPassword;
@@ -150,7 +149,7 @@ class UserController {
         $data = $this->data($r);
         $user = DB::transaction(function () use ($data) {
             $created = User::create($data);
-            Audit::record('user.created', 'user', $created->id, ['name' => $created->name, 'email' => $created->email, 'trade' => $created->trade]);
+
             return $created;
         });
 
@@ -172,7 +171,7 @@ class UserController {
             }
 
             $user->update($data);
-            Audit::record('user.updated', 'user', $user->id, ['name' => $user->name, 'trade' => $user->trade, 'active' => $user->active]);
+
         });
 
         return redirect()->route('users.index')->with('success', "Employee '{$user->name}' updated successfully.");
@@ -192,7 +191,7 @@ class UserController {
             }
 
             $user->update(['active' => $newStatus]);
-            Audit::record('user.status_toggled', 'user', $user->id, ['active' => $newStatus]);
+
         });
 
         $msg = $user->active ? "Account for '{$user->name}' is now Active." : "Account for '{$user->name}' has been Deactivated.";

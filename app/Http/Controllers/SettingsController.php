@@ -1,7 +1,6 @@
 <?php
 namespace App\Http\Controllers;
 use App\Models\Setting;
-use App\Services\Audit;
 use Illuminate\Http\Request;
 class SettingsController {
  public function edit(){return view('settings.edit');}
@@ -11,7 +10,7 @@ class SettingsController {
   if($r->boolean('remove_logo'))$d['logo']=null;
   if($r->hasFile('logo'))$d['logo']=$r->file('logo')->store('logos','public');
   // Retain old logo files because earlier receipt snapshots still reference them.
-  Setting::updateOrCreate(['id'=>1],['data'=>array_replace($current,$d)]);Audit::record('settings.updated','setting',1);
+  Setting::updateOrCreate(['id'=>1],['data'=>array_replace($current,$d)]);
   return back()->with('success','Park settings saved. Existing bill snapshots are unchanged.');
  }
 }

@@ -134,7 +134,7 @@ class AttendanceFlowTest extends TestCase
 
     public function test_staff_cannot_open_billing_or_administration(): void
     {
-        foreach (['/pos', '/sales', '/passes', '/crm', '/crm/export', '/crm/requests', '/sites', '/users', '/settings', '/audit', '/packages', '/rides', '/machines', '/transactions'] as $path) {
+        foreach (['/pos', '/sales', '/passes', '/crm', '/crm/export', '/crm/requests', '/sites', '/users', '/settings', '/packages', '/rides', '/machines', '/transactions'] as $path) {
             $this->signIn($this->staff)->get($path)->assertForbidden();
         }
         $this->signIn($this->staff)->post('/sales', [])->assertForbidden();

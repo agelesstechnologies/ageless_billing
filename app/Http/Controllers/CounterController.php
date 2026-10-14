@@ -2,7 +2,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\{Sale, User, WorkSite};
-use App\Services\Audit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Rules\StrongPassword;
@@ -57,7 +56,7 @@ class CounterController {
                 'attendance_enabled' => false,
                 'work_site_id' => WorkSite::where('active', true)->first()?->id,
             ]);
-            Audit::record('counter.created', 'user', $user->id, ['name' => $user->name, 'counter_id' => $user->employee_code]);
+
             return $user;
         });
 

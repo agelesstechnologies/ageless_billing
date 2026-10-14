@@ -21,7 +21,7 @@ class AdminPassword extends Command {
   $password=$this->secret('New password');$confirmation=$this->secret('Confirm password');
   $v=Validator::make(['password'=>$password,'password_confirmation'=>$confirmation],['password'=>['required','confirmed',new StrongPassword]]);
   if($v->fails()){$this->error($v->errors()->first());return self::FAILURE;}
-  DB::transaction(function()use($user,$password){$data=['password'=>$password];if($this->option('activate'))$data['active']=true;$user->update($data);\App\Services\Audit::record('user.console_password_reset','user',$user->id,['reactivated'=>(bool)$this->option('activate')]);});
+  DB::transaction(function()use($user,$password){$data=['password'=>$password];if($this->option('activate'))$data['active']=true;$user->update($data);});
   $this->info('Password updated in the configured project database. Sign in with the selected email and your new password. Existing browser sessions will be rejected on their next authenticated request.');return self::SUCCESS;
  }
 }

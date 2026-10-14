@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\{Ride,Machine};
-use App\Services\{Audit,FirmwareBundle};
+use App\Services\{FirmwareBundle};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\{Rule,ValidationException};
@@ -43,7 +43,7 @@ class RideSetupController {
     $values=['name'=>$row['name'],'code'=>$row['code'],'points_per_play'=>$row['points_per_play'],'pulse_ms'=>$row['pulse_ms'],'cooldown_seconds'=>$row['cooldown_seconds'],'active'=>(bool)($row['active']??false)];
     $ride=empty($row['id'])?Ride::create($values):Ride::findOrFail($row['id']);
     if(!empty($row['id']))$ride->update($values);
-    Audit::record(empty($row['id'])?'ride.created':'ride.updated','ride',$ride->id,['source'=>'25_ride_setup','points_per_play'=>$ride->points_per_play]);
+
     if(!$request->boolean('create_readers'))continue;
     $readers=Machine::where('ride_id',$ride->id)->get();
     if($readers->isNotEmpty()){$retained=array_merge($retained,$readers->pluck('serial')->all());continue;}
@@ -51,7 +51,7 @@ class RideSetupController {
     if(Machine::where('serial',$serial)->exists())throw ValidationException::withMessages(['create_readers'=>'Reader serial '.$serial.' already exists for another ride. Give this ride a different code.']);
     $token=bin2hex(random_bytes(32));
     $machine=Machine::create(['name'=>mb_substr($ride->name.' QR camera',0,100),'serial'=>$serial,'ride_id'=>$ride->id,'enabled'=>false,'token_hash'=>hash('sha256',$token)]);
-    Audit::record('machine.created','machine',$machine->id,['source'=>'25_ride_setup']);
+
     $devices[]=['machine'=>$machine,'token'=>$token];
    }
    return FirmwareBundle::pack($devices,$url,$retained);

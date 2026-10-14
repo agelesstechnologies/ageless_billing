@@ -41,7 +41,7 @@ class AttendanceService {
     $session->update(['ended_at'=>$now,'open_user_id'=>null,'needs_review'=>$review,'review_note'=>$note?:null]);
    }
    $punch=AttendancePunch::create(['attendance_session_id'=>$session->id,'user_id'=>$user->id,'request_id'=>$data['request_id'],'fingerprint'=>$fingerprint,'type'=>$data['action'],'punched_at'=>$now,'latitude'=>$data['latitude'],'longitude'=>$data['longitude'],'accuracy_m'=>$data['accuracy_m'],'distance_m'=>$geo['distance_m'],'location_status'=>$geo['status'],'ip_address'=>$ip,'user_agent'=>substr($agent,0,255),'note'=>$data['note']??null]);
-   Audit::record('attendance.punched_'.$data['action'],'attendance_session',$session->id,['punch_id'=>$punch->id,'location_status'=>$geo['status']]);
+
    return $this->response($punch,false);
   },3);
  }

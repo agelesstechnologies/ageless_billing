@@ -55,6 +55,5 @@ Route::middleware(['auth','active'])->group(function(){
   Route::post('/users/{user}/toggle-status',[UserController::class,'toggleStatus'])->name('users.toggle-status');
   Route::get('/transactions',[TransactionController::class,'index'])->name('transactions.index');
   Route::post('/transactions/{transaction}/resolve',[TransactionController::class,'resolve'])->name('transactions.resolve');
-  Route::get('/audit',[TransactionController::class,'audit'])->name('audit');
  });
 });

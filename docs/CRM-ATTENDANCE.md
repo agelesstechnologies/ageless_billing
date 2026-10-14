@@ -39,7 +39,7 @@ These coordinates are **illustrative test values**, not the park's location. For
 
 A successful response includes `ok`, `replay`, `punch_id`, `session_id`, `action`, UTC `recorded_at`, `needs_review`, `message` and staff-home `redirect`. Validation errors return 422; conflicting UUID reuse returns 409; an invalid/other-user session returns 404; missing/expired authentication returns 401 JSON (or middleware-standard CSRF 419). The browser renders server error text safely as text.
 
-The application locks the employee row inside a transaction, checks UUID/fingerprint deduplication and open-shift state, evaluates site rules, writes session and raw punch, then logs the audit entry. A UUID replay with the same identity and payload returns the prior result rather than creating another punch. A delayed out retry targets its original session, not a newly opened one. Locks plus uniqueness are design controls, not evidence of passing real MySQL concurrency tests.
+The application locks the employee row inside a transaction, checks UUID/fingerprint deduplication and open-shift state, evaluates site rules, writes session and raw punch. A UUID replay with the same identity and payload returns the prior result rather than creating another punch. A delayed out retry targets its original session, not a newly opened one. Locks plus uniqueness are design controls, not evidence of passing real MySQL concurrency tests.
 
 ## Location policy
 

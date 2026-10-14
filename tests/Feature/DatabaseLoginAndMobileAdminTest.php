@@ -49,7 +49,7 @@ class DatabaseLoginAndMobileAdminTest extends TestCase {
   $this->post('/users',['name'=>'New Database Staff','email'=>' NEW@Example.test ','password'=>'StaffPassword123!','password_confirmation'=>'StaffPassword123!','role'=>'staff','active'=>1,'attendance_enabled'=>1,'work_site_id'=>$site->id])->assertRedirect('/users');
   $staff=User::where('email','new@example.test')->firstOrFail();
   $this->assertTrue(Hash::check('StaffPassword123!',$staff->password));$this->assertNotSame('StaffPassword123!',$staff->password);
-  $this->assertDatabaseHas('audit_logs',['action'=>'user.created','entity_id'=>$staff->id]);
+  $this->assertDatabaseCount('audit_logs',0);
   $this->post('/logout');$this->login('NEW@example.test','StaffPassword123!')->assertRedirect('/staff');
   $this->postJson('/staff/punch',['action'=>'in','request_id'=>(string)Str::uuid(),'latitude'=>10.0001,'longitude'=>76.3001,'accuracy_m'=>12])->assertOk()->assertJsonPath('ok',true);
   $session=AttendanceSession::where('user_id',$staff->id)->firstOrFail();

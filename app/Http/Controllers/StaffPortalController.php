@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 use App\Domain\AttendancePolicy;
 use App\Models\{AttendanceSession,AttendanceCorrection,User};
-use App\Services\{AttendanceService,Audit};
+use App\Services\{AttendanceService};
 use Carbon\CarbonImmutable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{DB,Hash};
@@ -50,14 +50,14 @@ class StaffPortalController {
    if($session && $data['work_date']!==$session->work_date)throw ValidationException::withMessages(['work_date'=>'Choose the same date as the selected attendance session.']);
    if(AttendanceCorrection::where('user_id',$user->id)->where('work_date',$day)->where('status','pending')->exists()) throw ValidationException::withMessages(['reason'=>'You already have a pending request for this date.']);
    $record=AttendanceCorrection::create(['user_id'=>$user->id,'attendance_session_id'=>$session?->id,'work_site_id'=>$site->id,'work_date'=>$day,'timezone'=>$tz,'reason'=>$data['reason']]);
-   Audit::record('attendance.correction_requested','attendance_correction',$record->id);
+
   });return back()->with('success','Request sent to your administrator. Your original punches have not changed.');
  }
  public function profile(Request $r){return view('staff.profile',['user'=>$r->user()->load('workSite')]);}
  public function password(Request $r){
   $data=$r->validate(['current_password'=>'required|string','password'=>['required','confirmed',new StrongPassword]]);
   if(!Hash::check($data['current_password'],$r->user()->password))throw ValidationException::withMessages(['current_password'=>'Current password is incorrect.']);
-  $r->user()->update(['password'=>$data['password']]);$r->session()->regenerate();$r->session()->put('password_stamp',hash('sha256',$r->user()->password));Audit::record('user.password_changed','user',$r->user()->id);
+  $r->user()->update(['password'=>$data['password']]);$r->session()->regenerate();$r->session()->put('password_stamp',hash('sha256',$r->user()->password));
   return back()->with('success','Password changed. Other sessions will be signed out on their next request.');
  }
 }

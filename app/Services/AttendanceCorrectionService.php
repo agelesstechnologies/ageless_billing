@@ -35,7 +35,7 @@ class AttendanceCorrectionService {
     // Original punch records and their reported locations are NEVER overwritten.
    }
    $correction->update($update);
-   Audit::record('attendance.correction_'.$data['decision'],'attendance_correction',$correction->id,['reason'=>$data['review_note'],'attendance_session_id'=>$update['attendance_session_id']??$correction->attendance_session_id]);
+
   },3);
  }
  private function parse(string $value,string $tz):CarbonImmutable {
