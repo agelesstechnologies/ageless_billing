@@ -4,7 +4,7 @@
 $printWidth=(string)$sale->receipt_settings['receipt_width']==='80'?'82':$sale->receipt_settings['receipt_width'];
 @endphp
 @section('body-class','receipt-width-'.$printWidth)
-@push('head')<link rel="stylesheet" href="{{ asset('assets/receipt.css') }}"><style>@page{size:{{ $printWidth==='A4'?'A4':$printWidth.'mm 297mm' }};margin:{{ $printWidth==='A4'?'12mm':'3mm' }};}</style>@endpush
+@push('head')<link rel="stylesheet" href="{{ asset('assets/receipt.css') }}"><style>@page{size:{{ $printWidth==='A4'?'A4 landscape':$printWidth.'mm 297mm' }};margin:{{ $printWidth==='A4'?'12mm':'3mm' }};}</style>@endpush
 @section('content')
 @php
 $s=$sale->receipt_settings;
