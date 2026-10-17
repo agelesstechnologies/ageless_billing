@@ -70,3 +70,8 @@
 .receipt .receipt-art{display:block;width:100%;height:auto;mix-blend-mode:multiply}
 .receipt .receipt-art.skyline{margin-top:10px}
 .receipt .receipt-head{margin-bottom:8px}
+.receipt .receipt-head .brand-main{text-align:center}.receipt .receipt-logo{display:block;margin:0 auto;mix-blend-mode:multiply}.receipt .receipt-head .brand-tag{font-size:11px;font-weight:600}.receipt .receipt-head .receipt-art{margin:6px 0}.receipt .receipt-addr{margin:2px 0}
+.receipt .receipt-company{text-align:center;font-size:9px;line-height:1.35;margin:2px 0 6px}.receipt .receipt-company p,.receipt .receipt-company strong{margin:1px 0;font-size:9px;display:block}.receipt .receipt-company-logo{display:block;margin:0 auto 3px;max-height:28px;max-width:60%;mix-blend-mode:multiply}
+.receipt .receipt-items h3,.receipt .receipt-grand{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.receipt .receipt-items h3{background:#000!important;color:#fff!important;padding:4px 8px}
+.receipt .receipt-items h3 span{color:#fff!important}

@@ -14,7 +14,8 @@ $taxableSubtotal=$s['tax_mode']==='inclusive'?$sale->subtotal_paise-$sale->tax_p
 $halfTaxRate=rtrim(rtrim(number_format((float)$s['tax_rate']/2,2,'.',''),'0'),'.');
 @endphp
 <div class="page-head"><div><div class="eyebrow">A LITTLE TICKET. A BIG ADVENTURE.</div><h1>Your QR bill is ready.</h1><p class="muted">{{ $sale->number }} · {{ $sale->kind==='topup'?'Existing pass recharged':'New QR pass issued' }}</p></div><a class="btn secondary" href="{{ route('pos') }}">New bill →</a></div>
-<div class="receipt-layout"><article class="receipt"><i class="notch top"></i><i class="notch bottom"></i><header class="receipt-head"><img class="receipt-art" src="{{ asset('assets/receipt/header.png') }}" alt="{{ $s['park_name'] }} – Little tickets. Big adventures."></header>
+<div class="receipt-layout"><article class="receipt"><i class="notch top"></i><i class="notch bottom"></i><header class="receipt-head"><img class="receipt-art" src="{{ asset('assets/receipt/header.png') }}" alt="Grand Lemurian – Little tickets. Big adventures.">
+<div class="receipt-company">@if($s['logo'])<img class="receipt-company-logo" src="{{ asset('storage/'.$s['logo']) }}" alt="{{ $s['park_name'] }}">@endif @if($s['address'])<p style="white-space:pre-line">{{ $s['address'] }}</p>@endif @if($s['phone'])<p>Phone: {{ $s['phone'] }}</p>@endif @if($s['tax_id'])<p>Tax ID: {{ $s['tax_id'] }}</p>@endif</div></header>
 <div class="receipt-meta">
 <h3 class="receipt-status">{{ $sale->status==='voided'?'VOIDED BILL':'PAID BILL' }}</h3>
 <div><span>Bill No.</span><b>:</b><span>{{ $sale->number }}</span></div>
