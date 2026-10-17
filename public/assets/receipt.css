@@ -31,3 +31,42 @@
 .receipt-footer p+p{margin-top:5px}
 @media(max-width:700px){.receipt-layout{grid-template-columns:1fr}.receipt{padding:30px 26px 12px}}
 @media print{.receipt{border:0;max-width:none;padding:4mm 5mm 0;color:#000;font-size:9pt}.receipt .receipt-head h2{font-size:15pt}.receipt .receipt-meta{font-size:9pt}.receipt .receipt-qr{width:36mm}.receipt-grand>strong:last-child{font-size:16pt}.receipt-width-58 .receipt{padding:2mm 1mm;font-size:8pt}.receipt-width-58 .receipt-meta{font-size:8pt}.receipt-width-58 .receipt-grand>strong:last-child{font-size:13pt}.receipt-width-58 .receipt-qr{width:30mm}.receipt-width-A4 .receipt{max-width:80mm;padding:8mm 5mm;margin:0 auto}}
+
+/* Ticket-style bill */
+.receipt{position:relative;color:#111;font-family:Roboto,Arial,Helvetica,sans-serif;border:1px solid #bbb;border-radius:10px}
+.receipt .notch{position:absolute;left:50%;width:26px;height:26px;margin-left:-13px;background:#fff;border:1px solid #bbb;border-radius:50%}
+.receipt .notch.top{top:-14px}.receipt .notch.bottom{bottom:-14px}
+.receipt .brand-row{display:flex;align-items:center;gap:10px;padding-bottom:8px}
+.receipt .brand-main{flex:1;text-align:center}
+.receipt .brand-main h2{font-size:22px;margin:0}
+.receipt .receipt-logo{max-width:100%;max-height:70px}
+.receipt .brand-tag{font-size:10px;font-weight:600;margin:2px 0 0}
+.receipt .brand-motto{border-left:2px solid #111;padding-left:8px;font-weight:700;font-size:10px;line-height:1.25;letter-spacing:.5px}
+.receipt .receipt-icons{display:flex;justify-content:space-between;gap:2px;margin:8px 0;padding-bottom:8px;border-bottom:1.5px dashed #444}
+.receipt .receipt-icons div{flex:1;text-align:center;color:#000}
+.receipt .receipt-icons svg{width:100%;max-width:34px;height:22px}
+.receipt .receipt-icons span{display:block;font-size:6px;font-weight:700;line-height:1.1}
+.receipt .receipt-addr{text-align:center;font-size:9px}
+.receipt .receipt-status{display:none}
+.receipt .receipt-meta{border-bottom:1.5px dashed #444;padding-bottom:8px}
+.receipt .receipt-meta>div{display:flex;justify-content:flex-start}
+.receipt .receipt-meta>div>span:first-child{width:22%}
+.receipt .receipt-meta>div>b{width:6%;font-weight:400}
+.receipt .receipt-meta>div>span:last-child{text-align:left;flex:1}
+.receipt .receipt-items{border:0;padding:0 0 8px;border-bottom:1.5px dashed #444}
+.receipt .receipt-items h3{display:flex;justify-content:space-between;background:#111;color:#fff;padding:3px 6px;font-size:12px;margin:0 0 8px}
+.receipt .receipt-item{padding:0 6px}
+.receipt .receipt-totals{padding:8px 6px 0}
+.receipt .receipt-grand{background:#e8e8e8;border:0;margin:10px -6px 0;padding:5px 6px;align-items:center}
+.receipt .receipt-grand>strong:first-child{font-size:18px}
+.receipt .receipt-payment{margin-top:10px;padding:0 6px}
+.receipt .receipt-qr{width:120px}
+.receipt .receipt-skyline{display:block;width:100%;height:46px;margin-top:10px}
+.receipt .receipt-footer{border:0;text-align:center;margin-top:6px}
+.receipt .receipt-slogan{display:flex;align-items:center;gap:6px;font-size:8px;letter-spacing:2px;font-weight:600}
+.receipt .receipt-slogan:before,.receipt .receipt-slogan:after{content:"";flex:1;border-top:1px solid #111}
+@media print{.receipt .notch{display:none}.receipt{border-radius:0}}
+
+.receipt .receipt-art{display:block;width:100%;height:auto;mix-blend-mode:multiply}
+.receipt .receipt-art.skyline{margin-top:10px}
+.receipt .receipt-head{margin-bottom:8px}
